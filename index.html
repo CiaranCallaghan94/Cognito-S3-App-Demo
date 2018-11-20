@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Page Title</title>
+</head>
+	<body>
+        <div>
+             <div>
+                <h2>Cognito UserPool Config</h2>
+                <h5>Current UserPool ID:</h5>
+                <p id ="userpoolIdDisplay"> .....</p>
+                <h5>Current App Client ID:</h5>
+                <p id ="clientIdDisplay"> .....</p>
+                
+                Userpool ID: <input id="userpoolId" type="text" name="userpoolId" value="eu-west-1_sx6e2H3cu"><br>
+                App Client ID: <input id="appClientId" type="text" name="appClientId" value="6v84rpc8e23889t83rlr1rf6ab"><br>
+	            <input type="submit" value="Updated Config" onClick="UpdateConfig()">
+            </div>
+			<!--<div>
+				<br>
+				<input type="submit" value="Get Current User" onClick="GetCurrentUser()">
+				<p id="userNameDisplay"> </p>
+				<br>
+			</div> -->
+    	    <div>
+    	        <h2>Sign in user</h2>
+                Username: <input id="uname" type="text" name="uname" value="ciacal"><br>
+                Password: <input id="pwd" type="password" name="pwd" value=""><br>
+	            <input type="submit" value="Sign In" onClick="SignIn()">
+
+	            <p id ="signinresultname"> </p>
+	            <p id ="signinresultmessage"> </p>
+	            
+				<h4>Id Token</h4>
+	            <p id ="idToken"> .....</p>
+	            <p id ="idTokenParsed"> .....</p>
+	            
+				<h4>Access Token</h4>
+	            <p id ="accessToken"> .....</p>
+	            <p id ="accessTokenParsed"> .....</p>
+				
+				<h4>Refresh Token</h4>
+	            <p id ="refreshToken"> .....</p>
+	            <!-- <p id ="refreshTokenParsed"> .....</p> -->
+            </div>
+            
+            <div>
+				<br>
+				<input type="submit" value="RefreshTokens" onClick="RefreshSession()">
+				<br>
+			</div>
+        </div>
+		
+		
+		
+		
+		<script src="./library/amazon-cognito-identity.min.js"></script>
+		<script src="main.js"></script>
+	</body>
+</html>
