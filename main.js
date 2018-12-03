@@ -18,8 +18,8 @@ function DisplayTokens(result){
     var accessToken = result.accessToken;
 	var refreshToken = result.refreshToken;
            
-	document.getElementById("signinresultname").innerHTML = "Success";
-	document.getElementById("signinresultmessage").innerHTML = "User has succesfully logged in";
+	//document.getElementById("signinresultname").innerHTML = "Success";
+	//document.getElementById("signinresultmessage").innerHTML = "User has succesfully logged in";
 
     document.getElementById("idToken").innerHTML = idToken.jwtToken;
     document.getElementById("idTokenParsed").innerHTML = JSON.stringify(idToken.payload);
@@ -38,11 +38,13 @@ function RefreshSession(){
 			refreshToken = userData.getRefreshToken();
 			cognitoUser.refreshSession(refreshToken, (err, session) => {
 				if(err) {
+                    alert(err);
 					console.log(err);
 				} 
 				else {
-					console.log("Succesfully Refreshed Tokens")
-					DisplayTokens(session)
+					DisplayTokens(session);
+                    alert("Succesfully Refreshed Tokens");
+                    console.log("Succesfully Refreshed Tokens");
 				}
 			});
 		});
@@ -68,7 +70,8 @@ function SignIn(){
 	console.log('Signing in')
 	var uname = document.getElementById('uname').value;
 	var pwd = document.getElementById('pwd').value;
-
+    console.log(uname)
+    console.log(pwd)
 	var authenticationData = {
         Username : uname,
         Password : pwd
@@ -85,16 +88,17 @@ function SignIn(){
     cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
     cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
-            console.log(result);
             DisplayTokens(result);
+            alert("Succesfully Signed in and generated Tokens")
+            console.log(result);
         },
 
         onFailure: function(err) {
-            document.getElementById("signinresultname").innerHTML = err.name;
-            document.getElementById("signinresultmessage").innerHTML = err.message;
+            // document.getElementById("signinresultname").innerHTML = err.name;
+            // document.getElementById("signinresultmessage").innerHTML = err.message;
             console.log(err);
+            alert(err.message);
         },
-
     });
 }
 

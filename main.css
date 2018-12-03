@@ -1,0 +1,26 @@
+.cognitoFunctionality{
+	background-color:  #f8f9fa;
+	padding: 30px;
+	margin: 10px;
+}
+
+.light{
+	background-color: #ffffff;
+}
+
+.tokenSection{
+	text-align: center;
+	word-wrap: break-word;
+	padding: 20px;
+}
+
+.tokenSectionParagraph{
+	text-align: justify;	
+}
+
+.token{
+	text-align: justify;
+	background-color:  #f8f9fa;
+	padding: 20px;
+	border-left: 1px;
+}
