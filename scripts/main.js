@@ -1,108 +1,49 @@
 // https://qwertyuiop.auth.eu-west-1.amazoncognito.com/login?response_type=token&client_id=6v84rpc8e23889t83rlr1rf6ab&redirect_uri=https://www.google.com
 // When using loose Javascript files:
 
-var UserPoolId = "";
-var ClientId = "";
-var cognitoUser
+var userPoolId = "";
+var clientId = "";
+var cognitoUser;
 
-function UpdateConfig(){
-    UserPoolId = document.getElementById('userpoolId').value;
-    ClientId =  document.getElementById('appClientId').value;
+function updateConfig(){
+    userPoolId = document.getElementById('userpoolId').value;
+    clientId =  document.getElementById('appClientId').value;
      
-    document.getElementById("userpoolIdDisplay").innerHTML = UserPoolId;
-    document.getElementById("clientIdDisplay").innerHTML = ClientId;
+    document.getElementById("userpoolIdDisplay").innerHTML = userPoolId;
+    document.getElementById("clientIdDisplay").innerHTML = clientId;
 }
 
-function DisplayTokens(result){
-	var idToken = result.idToken;
+function displayTokens(result){
+    var idToken = result.idToken;
     var accessToken = result.accessToken;
-	var refreshToken = result.refreshToken;
+    var refreshToken = result.refreshToken;
            
-	document.getElementById("signinresultname").innerHTML = "Success";
-	document.getElementById("signinresultmessage").innerHTML = "User has succesfully logged in";
+    document.getElementById("signinresultname").innerHTML = "Success";
+    document.getElementById("signinresultmessage").innerHTML = "User has succesfully logged in";
 
     document.getElementById("idToken").innerHTML = idToken.jwtToken;
     document.getElementById("idTokenParsed").innerHTML = JSON.stringify(idToken.payload);
     document.getElementById("accessToken").innerHTML = accessToken.jwtToken;
     document.getElementById("accessTokenParsed").innerHTML = JSON.stringify(accessToken.payload);
-	document.getElementById("refreshToken").innerHTML = refreshToken.token;
+    document.getElementById("refreshToken").innerHTML = refreshToken.token;
 }
 
-function RefreshSession(){
-	if(cognitoUser != null){
-		cognitoUser.getSession(function(err, userData) {
-			if (err) {
-				alert(err.message || JSON.stringify(err));
-				return;
-			}
-			refreshToken = userData.getRefreshToken();
-			cognitoUser.refreshSession(refreshToken, (err, session) => {
-				if(err) {
-					console.log(err);
-				} 
-				else {
-					console.log("Succesfully Refreshed Tokens")
-					DisplayTokens(session)
-				}
-			});
-		});
-	}
+function signIn() {
+    console.log('Signing in');
+
+    // Get the user auth parameters from the ui
+    var uname = document.getElementById('uname').value;
+    var pwd = document.getElementById('pwd').value;
+
+    // call the implementation of this flow
+    flowMobileSDKSRP(uname, pwd);
 }
 
-//function GetCurrentUser(){
-//	if (cognitoUser != null){
-//		cognitoUser.getUserData(function(err, userData) {
-//			if (err) {
-//				alert(err.message || JSON.stringify(err));
-//				return;
-//			}
-//        console.log(userData);
-//		  document.getElementById("userNameDisplay").innerHTML = userData.Username;
-//		});
-//	}else {
-//	alert("No user is logged in")
-//	}
-//}
-
-function SignIn(){
-	console.log('Signing in')
-	var uname = document.getElementById('uname').value;
-	var pwd = document.getElementById('pwd').value;
-
-	var authenticationData = {
-        Username : uname,
-        Password : pwd
-    };
-    var authenticationDetails = new AmazonCognitoIdentity.AuthenticationDetails(authenticationData);
-    var poolData = { UserPoolId : UserPoolId,
-        ClientId : ClientId
-    };
-    var userPool = new AmazonCognitoIdentity.CognitoUserPool(poolData);
-    var userData = {
-        Username :uname,
-        Pool : userPool
-    };
-    cognitoUser = new AmazonCognitoIdentity.CognitoUser(userData);
-    cognitoUser.authenticateUser(authenticationDetails, {
-        onSuccess: function (result) {
-            console.log(result);
-            DisplayTokens(result);
-        },
-
-        onFailure: function(err) {
-            document.getElementById("signinresultname").innerHTML = err.name;
-            document.getElementById("signinresultmessage").innerHTML = err.message;
-            console.log(err);
-        },
-
-    });
+function signUp(){
+    console.log('Signing Up');
 }
 
-function SignUp(){
-	console.log('Signing Up');
-}
-
-function SignOut(){
-	console.log('Signing Up');
+function signOut(){
+    console.log('Signing Out');
 }
 

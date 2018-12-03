@@ -15,7 +15,7 @@
                 
                 Userpool ID: <input id="userpoolId" type="text" name="userpoolId" value="eu-west-1_sx6e2H3cu"><br>
                 App Client ID: <input id="appClientId" type="text" name="appClientId" value="6v84rpc8e23889t83rlr1rf6ab"><br>
-	            <input type="submit" value="Updated Config" onClick="UpdateConfig()">
+	            <input type="submit" value="Updated Config" onClick="updateConfig()">
             </div>
 			<!--<div>
 				<br>
@@ -27,7 +27,7 @@
     	        <h2>Sign in user</h2>
                 Username: <input id="uname" type="text" name="uname" value="ciacal"><br>
                 Password: <input id="pwd" type="password" name="pwd" value=""><br>
-	            <input type="submit" value="Sign In" onClick="SignIn()">
+	            <input type="submit" value="Sign In" onClick="signIn()">
 
 	            <p id ="signinresultname"> </p>
 	            <p id ="signinresultmessage"> </p>
@@ -47,17 +47,16 @@
             
             <div>
 				<br>
-				<input type="submit" value="RefreshTokens" onClick="RefreshSession()">
+				<input type="submit" value="RefreshTokens" onClick="refreshSession()">
 				<br>
 			</div>
         </div>
-		
-		
-		
-		
+
 		<script src="./library/amazon-cognito-identity.min.js"></script>
 		<script src="./library/aws-sdk-2.361.0.min.js"></script>
 		<script src="./scripts/main.js"></script>
 		<script src="./scripts/flow-srp.js"></script>
+		<script src="./scripts/flow-mobile-sdk-srp.js"></script>
+		<script src="./scripts/flow-mobile-sdk-userpool-refresh.js"></script>
 	</body>
 </html>
