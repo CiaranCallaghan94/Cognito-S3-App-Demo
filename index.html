@@ -14,21 +14,30 @@
 		</nav>
         <div>
             <div class="container">
-            	<div class="row">
-            		<div class="col cognitoFunctionality light">
+            	<div class="row cognitoFunctionality light">
+            		<div class="col">
 		                <h5>Current UserPool ID:</h5>
 		                <span id ="userpoolIdDisplay">[nothing configured]</span>
 		                <h5>Current App Client ID:</h5>
 		                <span id ="clientIdDisplay">[nothing configured]</span>
 	            	</div>
 	         
-	            	<div class="col cognitoFunctionality light">
+	            	<div class="col">
 		               	<input id="userpoolId" type="text" name="userpoolId" class="form-control" value="eu-west-1_sx6e2H3cu">
 		                <input id="appClientId" type="text" name="appClientId" class="form-control" value="6v84rpc8e23889t83rlr1rf6ab">
 		            	<button class="btn btn-primary" type="submit" value="Updated Config" onClick="UpdateConfig()">Update</button>
 		        	</div>
 	            </div>
 	        </div>
+	        <div class="container">
+            	<div class="row cognitoFunctionality">
+					<div class="text-center mb-4 col-12">
+		      			<h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
+		        		<p>This functionality has not been implemented yet!</p>
+		      		</div>
+		      		<button class="btn btn-lg btn-primary btn-block" type="submit" value="SignUp" onClick="SignUp()">Sign Up</button>
+	      		</div>
+	      	</div>
 	        <div class="container">
             	<div class="row cognitoFunctionality">
 					<div class="text-center mb-4 col-12">
@@ -64,13 +73,14 @@
 		      		<button class="btn btn-lg btn-primary btn-block" type="submit" value="RefreshTokens" onClick="RefreshSession()">Refresh Tokens</button>
 	      		</div>
 	      	</div>
-	      	
+
 			<div class="container">
 		    	<div class="row">
 			        <p id ="signinresultname"></p>
 			        <p id ="signinresultmessage"> </p>
 			    </div>
-			    <div class="tokenSection">
+			    <!--  -->
+			    <div id="tokenSectionStart" class="tokenSection">
 				    <h4>ID Token</h4>
 				    <p class="tokenSectionParagraph"> The ID token is a JSON Web Token (JWT) that contains claims about the identity of the authenticated user such as name, email, and phone_number. You can use this identity information inside your application. The ID token can also be used to authenticate users against your resource servers or server applications. When an ID token is used outside of the application against your web APIs, you must verify the signature of the ID token before you can trust any claims inside the ID token. See Verifying a JSON Web Token.
 					<br>

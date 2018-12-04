@@ -43,6 +43,7 @@ function RefreshSession(){
 				} 
 				else {
 					DisplayTokens(session);
+                    window.location = "./index.html#tokenSectionStart";
                     alert("Succesfully Refreshed Tokens");
                     console.log("Succesfully Refreshed Tokens");
 				}
@@ -89,6 +90,7 @@ function SignIn(){
     cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
             DisplayTokens(result);
+            window.location = "./index.html#tokenSectionStart";
             alert("Succesfully Signed in and generated Tokens")
             console.log(result);
         },
