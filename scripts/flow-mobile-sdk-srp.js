@@ -26,15 +26,15 @@ function flowMobileSDKSRP(username, password){
     // Authenticate the user
     cognitoUser.authenticateUser(authenticationDetails, {
         onSuccess: function (result) {
-            console.log(result);
-            // Display the tokens in the ui
             displayTokens(result);
+            window.location = "./index.html#tokenSectionStart";
+            alert("Succesfully Signed in and generated Tokens")
+            console.log(result);
         },
         onFailure: function(err) {
             // TODO: handle common errors and return specific recommendations
             // Display any errors returned to the ui
-            document.getElementById("signinresultname").innerHTML = err.name;
-            document.getElementById("signinresultmessage").innerHTML = err.message;
+            alert(err.message);
             console.log(err);
         },
     });

@@ -13,11 +13,14 @@ function refreshSession(){
 			refreshToken = userData.getRefreshToken();
 			cognitoUser.refreshSession(refreshToken, (err, session) => {
 				if(err) {
+					alert(err);
 					console.log(err);
 				} 
 				else {
-					console.log("Succesfully Refreshed Tokens")
-					displayTokens(session)
+					DisplayTokens(session);
+                    window.location = "./index.html#tokenSectionStart";
+                    alert("Succesfully Refreshed Tokens");
+                    console.log("Succesfully Refreshed Tokens");
 				}
 			});
 		});
