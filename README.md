@@ -3,13 +3,14 @@
 This is a sample application that I have created which is intended to help better explain how you can integrate Cognito User Pools, Cognito Identity Pools and S3 to your mobile or web application.
 
 Services:
-  Cognito UserPool:
+  
+  - Cognito UserPool:
   A user pool is a user directory in Amazon Cognito. With a user pool, your users can sign in to your web or mobile app through Amazon Cognito.
 
-  Cognito Identity Pool:
+  - Cognito Identity Pool:
   Amazon Cognito identity pools provide temporary AWS credentials for users who are guests (unauthenticated) and for users who have been authenticated and received a token. An identity pool is a store of user identity data specific to your account.
   
-  S3:
+  - S3:
   Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance.
   
 Application Flow:
