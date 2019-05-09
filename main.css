@@ -1,26 +1,90 @@
-.cognitoFunctionality{
+.feature-box{
 	background-color:  #f8f9fa;
 	padding: 30px;
-	margin: 10px;
+	float: none;
+    margin: 0 auto;
+    margin-top:10px;
+    margin-bottom: 10px;
 }
 
 .light{
 	background-color: #ffffff;
 }
 
-.tokenSection{
+/*.tokenSection{
 	text-align: center;
 	word-wrap: break-word;
 	padding: 20px;
 }
-
-.tokenSectionParagraph{
-	text-align: justify;	
-}
-
+*/
 .token{
 	text-align: justify;
 	background-color:  #f8f9fa;
-	padding: 20px;
-	border-left: 1px;
+	padding: 10px;
 }
+
+.token-header{
+	display: inline-block;
+	text-align: center;
+	padding: 10px;
+}
+.token-button{
+  padding: 10px;
+}
+
+#authenticated{
+	display: none;
+}
+
+.btn-secondary{
+	background-color: #e83e8c;
+	color: white;
+	border-color: #e83e8c;
+}
+
+.btn-secondary{
+	color: white;
+}
+
+#tokenDisplay{
+	padding: 10px;
+	margin: 10px;
+	border-style: solid;
+  border-color: black;
+	border-width: thin;
+	overflow-wrap: break-word;
+}
+
+#s3tokenDisplay{
+	width: 100%;
+	padding: 10px;
+	margin: 10px;
+	border-style: solid;
+  border-color: black;
+	border-width: thin;
+	overflow-wrap: break-word;
+}
+
+#s3img{
+	overflow:hidden;
+	width: 100%;
+}
+
+#iamPolicyDisplay{
+	font-size: .8em;
+	background-color: white;
+	border-style: solid;
+  border-color: black;
+	border-width: thin;
+}
+
+.navbar-brand{
+	font-size: 2em;
+}
+/*.flow-box{
+	background-color: white;
+	padding: 20px;
+	border-style: solid;
+  	border-width: 1px;
+  	height: 500px;
+}*/

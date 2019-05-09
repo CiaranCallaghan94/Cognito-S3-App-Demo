@@ -7,147 +7,116 @@
 	<link rel="stylesheet" type="text/css" href="./main.css">
 </head>
 	<body>
-		<!-- Just an image -->
-		<nav class="navbar navbar-light bg-light">
-		  <a class="navbar-brand" href="#">
-		    <h2>Cognito Troubleshooter</h2>
-		  </a>
+		<nav class="navbar navbar-light bg-light justify-content-between">
+  		<a class="navbar-brand">Cognnito UserPool -> Cognito Identity Pool -> S3</a>
 		</nav>
-        <div>
-            <div class="container">
-            	<div class="row cognitoFunctionality light">
-            		<div class="col">
-		                <h5>Current UserPool ID:</h5>
-		                <span id ="userpoolIdDisplay">[nothing configured]</span>
-		                <h5>Current App Client ID:</h5>
-		                <span id ="clientIdDisplay">[nothing configured]</span>
-	            	</div>
-	         
-	            	<div class="col">
-		               	<input id="userpoolId" type="text" name="userpoolId" class="form-control" value="eu-west-1_sx6e2H3cu">
-		                <input id="appClientId" type="text" name="appClientId" class="form-control" value="6v84rpc8e23889t83rlr1rf6ab">
-		            	<button class="btn btn-primary" type="submit" value="Updated Config" onClick="updateConfig()">Update</button>
-		        	</div>
-	            </div>
-	        </div>
-	        <div class="container">
-            	<div class="row cognitoFunctionality">
-					<div class="text-center mb-4 col-12">
-		      			<h1 class="h3 mb-3 font-weight-normal">Sign Up</h1>
-		        		<p>This functionality has not been implemented yet!</p>
-		      		</div>
-		      		<button class="btn btn-lg btn-primary btn-block" type="submit" value="SignUp" onClick="signUp()">Sign Up</button>
-	      		</div>
-	      	</div>
-	        <div class="container">
-            	<div class="row cognitoFunctionality">
-					<div class="text-center mb-4 col-12">
-		      			<h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
-		        		<p>This sign in uses the <code>authenticateUser</code> method from the identity SDK. An example can be found here: <a href="https://caniuse.com/#feat=css-placeholder-shown">CognitoUser.authenticateUser()</a></p>
-		      		</div>
-
-		      		<div class="form-label-group col-12">
-		        		<input type="text" id="uname" class="form-control" name="uname" placeholder="Username" required autofocus>
-		        		<label for="uname">Username</label>
-		      		</div>
-
-		      		<div class="form-label-group col-12" >
-		        		<input type="password" id="pwd" class="form-control" name="pwd" placeholder="Password" required>
-		        		<label for="pwd">Password</label>
-		      		</div>
-		      		<button class="btn btn-lg btn-primary btn-block" type="submit" value="SignIn" onClick="signIn()">Sign in</button>
-	      		</div>
-	      	</div>
-				<!--<div>
-					<br>
-					<input type="submit" value="Get Current User" onClick="GetCurrentUser()">
-					<p id="userNameDisplay"> </p>
-					<br>
-				</div> -->
-
-			<div class="container">
-            	<div class="row cognitoFunctionality">
-					<div class="text-center mb-4 col-12">
-		      			<h1 class="h3 mb-3 font-weight-normal">Refresh Tokens</h1>
-		        		<p>If a user is signed in above, refreshing the tokens will use the refresh token against the Cognito service to retrieve new ID Token and Access Token</p>
-		      		</div>
-		      		<button class="btn btn-lg btn-primary btn-block" type="submit" value="RefreshTokens" onClick="refreshSession()">Refresh Tokens</button>
-	      		</div>
-	      	</div>
-
-			<div class="container">
-		    	<div class="row">
-			        <p id ="signinresultname"></p>
-			        <p id ="signinresultmessage"> </p>
-			    </div>
-			    <!--  -->
-			    <div id="tokenSectionStart" class="tokenSection">
-				    <h4>ID Token</h4>
-				    <p class="tokenSectionParagraph"> The ID token is a JSON Web Token (JWT) that contains claims about the identity of the authenticated user such as name, email, and phone_number. You can use this identity information inside your application. The ID token can also be used to authenticate users against your resource servers or server applications. When an ID token is used outside of the application against your web APIs, you must verify the signature of the ID token before you can trust any claims inside the ID token. See Verifying a JSON Web Token.
-					<br>
-					<br>
-					The ID token expires one hour after the user authenticates. You should not process the ID token in your client or web API after it has expired.
-					<br>
-					<br>
-					For more information about OIDC standard claims, see the OIDC Standard Claims.</p>
-				    <div class="row">
-				    	<div class="col-6 token">
-				        	<p id ="idToken"></p>
-				        </div>
-				        <div class="col-6 token">
-				        	<p id ="idTokenParsed"></p>
-				    	</div>
-				    </div> 
+		<!-- Main Webpage container -->
+		<section class="container">
+			<!-- Second Row -->
+			<div class="row">
+				<!-- Sign In Box -->
+				<div class="text-center mb-4 col-12">
+					<h6 class="h6 mb-3 font-weight-normal">Please ensure you fill in the neccessary AWS variables at the top of the 'src/main.js' before using the demo application</h6>
 				</div>
-				<div class="tokenSection">
-					<h4>Access Token</h4>
-			    	<p class="tokenSectionParagraph">The user pool access token contains claims about the authenticated user, but unlike the ID token, it does not include identity information. The primary purpose of the access token is to authorize API operations in the context of the user in the user pool. For example, you can use the access token to grant your user access to add, change or delete user attributes. The access token can also be used with any of your web APIs to make access control decisions and authorize operations for your users.
-			    	<br>
-			    	<br>
-					The access token is also represented as a JSON Web Token (JWT). The header for the access token will have the same structure as the ID token, but the key ID (kid) will be different because different keys are used to sign ID tokens and access tokens. As with the ID token, you must first verify the signature of the access token in your web APIs before you can trust any of its claims. See Verifying a JSON Web Token.
-					<br>
-					<br>
-					The access token expires one hour after your user successfully authenticates. It should not be used after it has expired.</p>
-				    <div class="row">
-				    	<div class="col-6 token">
-				        	<p id ="accessToken"></p>
-				        </div>
-				        <div class="col-6 token">
-				        	<p id ="accessTokenParsed"></p>
-				    	</div>
+	      <div class="feature-box col-8">
+	            	<!-- Box Description -->
+					<div class="text-center mb-4 col-12">
+				      	<h1 class="h3 mb-3 font-weight-normal">Sign In</h1>
+				  </div>
+					<div class="mb-4 col-12">
+						<p>Sign in with your username and password of a user in your Userpool. After a succesful authentication you will obtain an ID, Access and Refresh token </p>
 					</div>
-				</div>
-				<div class="tokenSection">
-					<div class="row">
-						<div class="col">
-							<h4>Refresh Token</h4>
-							<p class="tokenSectionParagraph">You can use the refresh token to retrieve new ID and access tokens.By default, the refresh token expires 30 days after your app user signs in to your user pool. When you create an app for your user pool, you can set the app's refresh token expiration (in days) to any value between 1 and 3650.
-							<br>
-							<br>
-							The Mobile SDK for iOS and the Mobile SDK for Android automatically refresh your ID and access tokens if there is a valid (non-expired) refresh token present, and the ID and access tokens have a minimum remaining validity of 5 minutes. If the refresh token is expired, your app user must reauthenticate by signing in again to your user pool.
-							<br>
-							<br>
-							<b>Note</b>
-							<br>
-							The Mobile SDK for Android offers the option to change the minimum validity period of the ID and access tokens to a value between 0 and 30 minutes. See the setRefreshThreshold() method of CognitoIdentityProviderClientConfig in the AWS Mobile SDK for Android API Reference.
-							<br>
-							<br>
-							Your user's account itself never expires, as long as the user has logged in at least once before the UnusedAccountValidityDays time limit for new accounts.
-							<br>
-							<br>
-							To use the refresh token to get new ID and access tokens with the user pool API, use the AdminInitiateAuth or InitiateAuth methods. Pass REFRESH_TOKEN_AUTH for the AuthFlow parameter. The authorization parameters, AuthParameters, are a key-value map where the key is "REFRESH_TOKEN" and the value is the actual refresh token. Amazon Cognito responds with new ID and access tokens.</p>
-					        <p id ="refreshToken" class="token"></p>
-					        <!-- <p id ="refreshTokenParsed"> .....</p> -->
-					    </div>
-			        </div>
+				    <!-- Username Input Field -->
+				    <div class="form-label-group col-12">
+				        <input type="text" id="uname" class="form-control" name="uname" placeholder="Username" required autofocus>
+				        <label for="uname">Username</label>
+				    </div>
+					<!-- Password Input Field -->
+				    <div class="form-label-group col-12" >
+				        <input type="password" id="pwd" class="form-control" name="pwd" placeholder="Password" required>
+				        <label for="pwd">Password</label>
+				    </div>
+				    <button type="button" class="btn btn-success btn-md btn-block" id="buttonSignin">Sign In</button>
+
+						<div id="tokenDisplay">
+							<h6>ID TOKEN:</h6>
+							<div id="idTokenDisplay"></div>
+						</div>
+						<div id="tokenDisplay">
+							<h6>ACCESS TOKEN:</h6>
+							<div id="accessTokenDisplay"></div>
+						</div>
+						<div id="tokenDisplay">
+							<h6>REFRESH TOKEN:</h6>
+							<div id="refreshTokenDisplay"></div>
+						</div>
+			 </div>
+
+			</div>
+			<div class="row">
+				<!-- Sign In Box -->
+	            <div class="feature-box col-8">
+	            	<!-- Box Description -->
+					<div class="text-center mb-4 col-12">
+				      	<h1 class="h3 mb-3 font-weight-normal">Get Temp Credentials</h1>
+				    </div>
+						<div class="mb-4 col-12">
+					      <p>The below IAM policy shows how you can restrict access for a single idenitity (authenticated user) to only be able to access resources in your S3 bucket that belong to them. The user will only have S3 GET permissions to access S3 objects in your S3 bucket which have a prefix of the Identity ID of the user. This Identity ID of the user will be displayed below after recieving temporary credentials.</p>
+								<pre id="iamPolicyDisplay"></pre>
+					  </div>
+				    <button type="button" class="btn btn-success btn-md btn-block" id="buttonGetCreds">Get Credentials</button>
+						<div id="tokenDisplay">
+							<h6>Identity ID:</h6>
+							<div id="identityIdDisplay" style="color:red; font-weight: bold;"></div>
+						</div>
+						<div id="tokenDisplay">
+							<h6>Access Key ID:</h6>
+							<div id="accessKeyDisplay"></div>
+						</div>
+						<div id="tokenDisplay">
+							<h6>Secret Access Key:</h6>
+							<div id="secretKeyDisplay"></div>
+						</div>
+						<div id="tokenDisplay">
+							<h6>Session Token</h6>
+							<div id="sessionTokenDisplay"></div>
+						</div>
 			    </div>
-	        </div>
-    	</div>
+
+			</div>
+
+			<div class="row">
+				<!-- Sign In Box -->
+	        <div class="feature-box col-8">
+	            	<!-- Box Description -->
+						<div class="text-center mb-4 col-12">
+				      	<h1 class="h3 mb-3 font-weight-normal">Get S3 object using Temp credentials</h1>
+				    </div>
+						<div class="mb-4 col-12">
+					    <p>Enter the full S3 object of the object you would like to get fromn S3. For this demo, the application is ecpecting to recieve a '.jpeg' image. After recievinng the image, it will display it in the box below.</p><br>
+							If you gave your identity pool and authenticed IAM role, like above under 'Get Credentials', you should only be able to access s3 objects in your S3 bucket that have ann s3 object key similar to below:<br>
+						<b>"us-east-1:88859bc9-0149-4183-bf10-39e36EXAMPLE/dog.jpeg"</b>(identityID/ObjectName)</p>
+
+					  </div>
+						<div class="form-label-group col-12">
+							 <input type="text" id="s3fullkey" class="form-control" name="s3fullkey" placeholder="s3 full Object Key" required autofocus>
+							 <label for="s3key">S3 full Object Key</label>
+					 </div>
+				    <button type="button" class="btn btn-success btn-md btn-block" id="buttonGetObject">Get Object</button>
+						<div id="s3tokenDisplay">
+							<h6>S3 Object:</h6>
+							<img id="s3img" src=""/>
+						</div>
+			    </div>
+			</div>
+			<!-- End of Authenticated Row -->
+	    </section>
+	    <!-- End of Main Webpage container -->
+	    <script src="./library/jquery-3.3.1.min.js"></script>
+	    <!-- AWS SDK's -->
 		<script src="./library/amazon-cognito-identity.min.js"></script>
-		<script src="./library/aws-sdk-2.361.0.min.js"></script>
+		<script src="./library/aws-sdk-2.450.0.min.js"></script>
+		<!-- Custom Scripts -->
 		<script src="./scripts/main.js"></script>
-		<!--<script src="./scripts/flow-srp.js"></script>-->
-		<script src="./scripts/flow-mobile-sdk-srp.js"></script>
-		<script src="./scripts/flow-mobile-sdk-userpool-refresh.js"></script>
 	</body>
 </html>
