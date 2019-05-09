@@ -17,17 +17,17 @@ Application Flow:
   
   - Sign into your User Pool with a users username and password. After a succesfull authentication, you will recive and ID, Access and Refresh token.
   
-  ![](images/succesfulauth.png)
+  ![](images/succesfulauth.PNG)
   
   - Exchange the ID token recieved from the userpool to obtain authenticated user temporary AWS credentials from the Identity Pool.
   
   
-   ![](images/getcreds.png)
+   ![](images/getcreds.PNG)
    
   - SDK will assume the credentials and you will be able to make requests to AWS S3.
   
   
-   ![](images/succesfuls3get.png)
+   ![](images/succesfuls3get.PNG)
    
 Reach out to me here if you have any questions:
 https://www.linkedin.com/in/ciaran-callaghan/
