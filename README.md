@@ -2,6 +2,8 @@
 
 This is a sample application that I have created which is intended to help better explain how you can integrate Cognito User Pools, Cognito Identity Pools and S3 to your mobile or web application.
 
+![](images/AWSDiagram.PNG)
+
 Services:
   
   - Cognito UserPool:
